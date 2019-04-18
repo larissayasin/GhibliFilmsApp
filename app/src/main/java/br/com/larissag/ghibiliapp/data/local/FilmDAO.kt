@@ -1,16 +1,13 @@
 package br.com.larissag.ghibiliapp.data.local
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.OnConflictStrategy
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import br.com.larissag.ghibiliapp.data.Film
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 
 @Dao
-interface FilmDAO{
+interface FilmDAO {
     @Insert(
         onConflict = OnConflictStrategy.IGNORE
     )
@@ -22,6 +19,7 @@ interface FilmDAO{
     @Query("SELECT * FROM film")
     fun findAll(): Flowable<List<Film>>
 
-
+    @Query("UPDATE film set poster_url = :posterUrl WHERE id = :id")
+    fun updatePoster(id: String, posterUrl: String)
 
 }

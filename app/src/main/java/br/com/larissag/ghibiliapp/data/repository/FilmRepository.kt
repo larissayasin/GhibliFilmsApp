@@ -15,7 +15,7 @@ class FilmRepositoryImpl(private val dao: FilmDAO, private val api: FilmApi) : F
     override fun getFilms(): Observable<List<Film>> {
         val observableFromApi = getFilmsFromApi()
         val observableFromDb = getFilmsFromDb()
-        return Observable.concatArrayEager(observableFromDb, observableFromApi)
+        return Observable.concatArray(observableFromDb, observableFromApi)
     }
 
     private fun getFilmsFromApi(): Observable<List<Film>> {

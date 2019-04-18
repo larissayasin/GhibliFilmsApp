@@ -18,7 +18,7 @@ class FilmViewModel(private val repository: FilmRepository) : ViewModel() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                event.value = FilmEvent(films = it)
+                event.value = FilmEvent(films = it, isSuccess = true)
 
             }, { error ->
                 event.value = FilmEvent(error = error)

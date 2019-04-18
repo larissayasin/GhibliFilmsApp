@@ -2,6 +2,7 @@ package br.com.larissag.ghibiliapp.di
 
 import br.com.larissag.ghibiliapp.BuildConfig
 import br.com.larissag.ghibiliapp.data.remote.FilmApi
+import br.com.larissag.ghibiliapp.di.DatasourceProperties.SERVER_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -13,11 +14,11 @@ import java.util.concurrent.TimeUnit
 val remoteModule = module {
     single { createOkHttpClient() }
 
-    single { createWebService<FilmApi>(get(), getProperty(DatasourceProperties.SERVER_URL)) }
+    single { createWebService<FilmApi>(get(), SERVER_URL) }
 }
 
 object DatasourceProperties {
-    const val SERVER_URL = "SERVER_URL"
+    const val SERVER_URL = "https://ghibliapi.herokuapp.com/"
 }
 
 fun createOkHttpClient(): OkHttpClient {

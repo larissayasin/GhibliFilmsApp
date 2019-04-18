@@ -7,9 +7,11 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val ghibiliModule = module {
-    single<FilmRepository> { FilmRepositoryImpl(get(), get()) }
+
 
     viewModel { FilmViewModel(get()) }
+
+    single<FilmRepository>(createdAtStart = true) { FilmRepositoryImpl(get(), get()) }
 }
 
-val ghibiliApp = listOf(ghibiliModule, remoteModule, localModule)
+val ghibiliApp = listOf(remoteModule, localModule, ghibiliModule)
