@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">@color/curious_blue</color>
+    <color name="colorPrimaryDark">@color/endeavour</color>
+    <color name="colorAccent">@color/bali_hai</color>
+
+    <color name="curious_blue">#1e88e5</color>
+    <color name="endeavour">#005cb2</color>
+    <color name="bali_hai">#90a4ae</color>
+    <color name="nevada">#62757f</color>
 </resources>

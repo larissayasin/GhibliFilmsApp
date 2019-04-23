@@ -20,6 +20,7 @@ class FilmsFragment : androidx.fragment.app.Fragment() {
 
     private val vm: FilmViewModel by sharedViewModel()
     private lateinit var vw: View
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,6 +48,4 @@ class FilmsFragment : androidx.fragment.app.Fragment() {
         })
         return vw
     }
-
-
 }

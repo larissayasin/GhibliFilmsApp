@@ -11,27 +11,33 @@ import io.reactivex.Observable
 
 interface FilmRepository {
     fun getFilms(): Observable<List<Film>>
-    fun getFilmPoster(title : String) : Observable<OmdbFilm>
+    fun getFilmPoster(title: String): Observable<OmdbFilm>
+    fun updateFilm(film: Film, posterUrl: String)
 }
 
-class FilmRepositoryImpl(private val dao: FilmDAO, private val api: FilmApi, private val omdbApi: OmdbApi) : FilmRepository {
+class FilmRepositoryImpl(private val dao: FilmDAO, private val api: FilmApi, private val omdbApi: OmdbApi) :
+    FilmRepository {
+
+    override fun updateFilm(film: Film, posterUrl: String) {
+        dao.updatePoster(film.id, posterUrl)
+    }
 
     override fun getFilmPoster(title: String): Observable<OmdbFilm> {
-       return omdbApi.getFilmPoster(OMDB_KEY, title)
+        return omdbApi.getFilmPoster(OMDB_KEY, title)
     }
 
     override fun getFilms(): Observable<List<Film>> {
-        val observableFromApi = getFilmsFromApi()
         val observableFromDb = getFilmsFromDb()
+        val observableFromApi = getFilmsFromApi()
         return Observable.merge(observableFromDb, observableFromApi)
     }
 
     private fun getFilmsFromApi(): Observable<List<Film>> {
         return api.getFilms()
-            .doOnNext {
-                Log.e("REPOSITORY API * ", it.size.toString())
-                dao.saveAll(it)
-
+            .doOnNext { list ->
+                Log.e("REPOSITORY API * ", list.size.toString())
+                list.forEach { dao.saveFilm(it) }
+                //  dao.saveAll(it)
             }
     }
 
@@ -43,5 +49,6 @@ class FilmRepositoryImpl(private val dao: FilmDAO, private val api: FilmApi, pri
                 Log.e("REPOSITORY DB *** ", it.size.toString())
             }
     }
+
 
 }

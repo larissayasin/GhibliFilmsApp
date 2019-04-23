@@ -24,7 +24,7 @@ class FilmAdapter (private val films : List<Film>, private val activity : Activi
         holder.bind(films[pos])
     }
 
-    class FilmViewHolder(private val iv: View, val activity: Activity) : androidx.recyclerview.widget.RecyclerView.ViewHolder(iv) {
+    class FilmViewHolder(private val iv: View, private val activity: Activity) : androidx.recyclerview.widget.RecyclerView.ViewHolder(iv) {
         fun bind(film : Film){
             iv.tv_film_item_title.text = film.title.trim()
             iv.tv_fil_item_director.text = film.director

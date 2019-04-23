@@ -13,8 +13,11 @@ interface FilmDAO {
     )
     fun saveAll(entities: List<Film>)
 
+    @Insert(        onConflict = OnConflictStrategy.IGNORE    )
+    fun saveFilm(film: Film)
+
     @Query("SELECT * FROM film WHERE id = :id")
-    fun findById(id: String): Single<Film>
+    fun findById(id: String): Film
 
     @Query("SELECT * FROM film")
     fun findAll(): Flowable<List<Film>>

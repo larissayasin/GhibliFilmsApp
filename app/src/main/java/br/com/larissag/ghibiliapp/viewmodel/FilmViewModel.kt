@@ -37,6 +37,10 @@ class FilmViewModel(private val repository: FilmRepository) : ViewModel() {
                 event.value = FilmEvent(error = error)
             })
     }
+
+    fun updateFilmPoster(film: Film, posterUrl: String){
+        repository.updateFilm(film, posterUrl)
+    }
 }
 
 data class FilmEvent(
