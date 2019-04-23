@@ -1,7 +1,7 @@
 package br.com.larissag.ghibiliapp.data.local
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.Database
+import androidx.room.RoomDatabase
 import br.com.larissag.ghibiliapp.data.Film
 
 @Database(entities = [Film::class], version = 1)

@@ -11,7 +11,7 @@ val ghibiliModule = module {
 
     viewModel { FilmViewModel(get()) }
 
-    single<FilmRepository>(createdAtStart = true) { FilmRepositoryImpl(get(), get()) }
+    single<FilmRepository>(createdAtStart = true) { FilmRepositoryImpl(get(), get(), get()) }
 }
 
 val ghibiliApp = listOf(remoteModule, localModule, ghibiliModule)

@@ -1,6 +1,6 @@
 package br.com.larissag.ghibiliapp.data.local
 
-import android.arch.persistence.room.*
+import androidx.room.*
 import br.com.larissag.ghibiliapp.data.Film
 import io.reactivex.Flowable
 import io.reactivex.Observable
