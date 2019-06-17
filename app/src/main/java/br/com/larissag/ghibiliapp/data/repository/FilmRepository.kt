@@ -8,6 +8,8 @@ import br.com.larissag.ghibiliapp.data.local.FilmDAO
 import br.com.larissag.ghibiliapp.data.remote.FilmApi
 import br.com.larissag.ghibiliapp.data.remote.OmdbApi
 import io.reactivex.Observable
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 interface FilmRepository {
     fun getFilms(): Observable<List<Film>>
@@ -19,7 +21,12 @@ class FilmRepositoryImpl(private val dao: FilmDAO, private val api: FilmApi, pri
     FilmRepository {
 
     override fun updateFilm(film: Film, posterUrl: String) {
-        dao.updatePoster(film.id, posterUrl)
+
+
+        GlobalScope.launch {
+            //dao.findA()
+            dao.updatePoster(film.id, posterUrl)
+        }
     }
 
     override fun getFilmPoster(title: String): Observable<OmdbFilm> {
@@ -36,8 +43,7 @@ class FilmRepositoryImpl(private val dao: FilmDAO, private val api: FilmApi, pri
         return api.getFilms()
             .doOnNext { list ->
                 Log.e("REPOSITORY API * ", list.size.toString())
-                list.forEach { dao.saveFilm(it) }
-                //  dao.saveAll(it)
+                  dao.saveAll(list)
             }
     }
 
@@ -45,7 +51,6 @@ class FilmRepositoryImpl(private val dao: FilmDAO, private val api: FilmApi, pri
         return dao.findAll()
             .toObservable()
             .doOnNext {
-                //Print log it.size :)
                 Log.e("REPOSITORY DB *** ", it.size.toString())
             }
     }

@@ -8,12 +8,10 @@ import io.reactivex.Single
 
 @Dao
 interface FilmDAO {
-    @Insert(
-        onConflict = OnConflictStrategy.IGNORE
-    )
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun saveAll(entities: List<Film>)
 
-    @Insert(        onConflict = OnConflictStrategy.IGNORE    )
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun saveFilm(film: Film)
 
     @Query("SELECT * FROM film WHERE id = :id")
@@ -21,6 +19,9 @@ interface FilmDAO {
 
     @Query("SELECT * FROM film")
     fun findAll(): Flowable<List<Film>>
+
+    @Query("SELECT * FROM film")
+    fun findA(): List<Film>
 
     @Query("UPDATE film set poster_url = :posterUrl WHERE id = :id")
     fun updatePoster(id: String, posterUrl: String)

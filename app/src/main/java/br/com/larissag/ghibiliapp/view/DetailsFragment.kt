@@ -42,7 +42,7 @@ class DetailsFragment : androidx.fragment.app.Fragment() {
         vm.event.observe(this, Observer { event ->
             if (event != null) {
                 when {
-                    event.isLoading -> Toast.makeText(this.context, "LOADING", Toast.LENGTH_SHORT).show()
+                  //  event.isLoading -> Toast.makeText(this.context, "LOADING", Toast.LENGTH_SHORT).show()
                     event.isSuccess -> {
                         Glide.with(this).load(event.posterUrl ?: "").into(v.iv_details_poster)
                         vm.updateFilmPoster(film, event.posterUrl ?: "")

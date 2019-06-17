@@ -9,7 +9,6 @@ val localModule = module {
 
     single {
         Room.databaseBuilder(androidApplication(), FilmDatabase::class.java, "film-db")
-            .allowMainThreadQueries()
             .build()
     }
 
