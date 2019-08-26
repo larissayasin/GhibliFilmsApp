@@ -1,6 +1,6 @@
 package br.com.larissag.ghibiliapp.data.repository
 
-import OmdbKey.OMDB_KEY
+import Keys.OMDB_KEY
 import android.util.Log
 import br.com.larissag.ghibiliapp.data.Film
 import br.com.larissag.ghibiliapp.data.OmdbFilm

@@ -27,7 +27,7 @@ class FilmViewModel(private val repository: FilmRepository) : ViewModel() {
 
     fun getPoster(title : String){
         event.value = FilmEvent(isLoading = true)
-        repository.getFilmPoster(title)
+       val d = repository.getFilmPoster(title)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({

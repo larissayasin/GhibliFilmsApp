@@ -1,19 +1,16 @@
 package br.com.larissag.ghibiliapp.view
 
 
-import androidx.lifecycle.Observer
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import br.com.larissag.ghibiliapp.R
 import br.com.larissag.ghibiliapp.viewmodel.FilmViewModel
 import kotlinx.android.synthetic.main.fragment_films.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class FilmsFragment : androidx.fragment.app.Fragment() {
