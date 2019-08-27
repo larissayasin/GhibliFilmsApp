@@ -36,7 +36,6 @@ class DetailsFragment : androidx.fragment.app.Fragment() {
 
         binding.film = film
 
-
         vm.getPoster(film.title)
 
         vm.event.observe(this, Observer { event ->
@@ -55,6 +54,14 @@ class DetailsFragment : androidx.fragment.app.Fragment() {
                 }
             }
         })
+
         return v
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+//            // Handle the back button event
+//        }
     }
 }

@@ -77,7 +77,6 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
 
     implementation 'com.google.android.gms:play-services-base:17.1.0'
-    implementation 'com.google.android.gms:play-services-ads:18.1.1'
     // Required for Flurry Analytics integration
     implementation 'com.flurry.android:analytics:11.4.0@aar'
 

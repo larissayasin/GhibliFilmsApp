@@ -8,10 +8,10 @@ import io.reactivex.Single
 
 @Dao
 interface FilmDAO {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveAll(entities: List<Film>)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveFilm(film: Film)
 
     @Query("SELECT * FROM film WHERE id = :id")

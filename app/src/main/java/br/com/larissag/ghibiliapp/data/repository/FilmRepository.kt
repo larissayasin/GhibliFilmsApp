@@ -2,6 +2,7 @@ package br.com.larissag.ghibiliapp.data.repository
 
 import Keys.OMDB_KEY
 import android.util.Log
+import br.com.larissag.ghibiliapp.Keys.OMDB_KEY
 import br.com.larissag.ghibiliapp.data.Film
 import br.com.larissag.ghibiliapp.data.OmdbFilm
 import br.com.larissag.ghibiliapp.data.local.FilmDAO
@@ -21,8 +22,6 @@ class FilmRepositoryImpl(private val dao: FilmDAO, private val api: FilmApi, pri
     FilmRepository {
 
     override fun updateFilm(film: Film, posterUrl: String) {
-
-
         GlobalScope.launch {
             //dao.findA()
             dao.updatePoster(film.id, posterUrl)
@@ -43,7 +42,9 @@ class FilmRepositoryImpl(private val dao: FilmDAO, private val api: FilmApi, pri
         return api.getFilms()
             .doOnNext { list ->
                 Log.e("REPOSITORY API * ", list.size.toString())
-                  dao.saveAll(list)
+                list.forEach {
+                    dao.saveFilm(it)
+                }
             }
     }
 

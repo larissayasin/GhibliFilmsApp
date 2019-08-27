@@ -1,5 +1,6 @@
 package br.com.larissag.ghibiliapp.data
 
+import androidx.annotation.Nullable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -13,6 +14,7 @@ data class Film(
     val producer: String,
     val release_date: String,
     val rt_score: String,
-    var poster_url : String
+    @Nullable
+    var poster_url : String?
 )
 
