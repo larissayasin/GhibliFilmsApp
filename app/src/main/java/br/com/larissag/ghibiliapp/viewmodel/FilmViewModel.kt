@@ -1,7 +1,9 @@
 package br.com.larissag.ghibiliapp.viewmodel
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import br.com.larissag.ghibiliapp.data.Film
 import br.com.larissag.ghibiliapp.data.repository.FilmRepository
@@ -14,20 +16,18 @@ class FilmViewModel(private val repository: FilmRepository) : ViewModel() {
     @SuppressLint("CheckResult")
     fun getFilms() {
         event.value = FilmEvent(isLoading = true)
-        repository.getFilms()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                event.value = FilmEvent(films = it, isSuccess = true)
+        val d = repository.getFilms()
 
-            }, { error ->
-                event.value = FilmEvent(error = error)
-            })
+         repository.event?.observeForever {
+             event.value = it
+             Log.d("REPO EVENT" , "$it")
+        }
+
     }
 
-    fun getPoster(title : String){
+    fun getPoster(title: String) {
         event.value = FilmEvent(isLoading = true)
-       val d = repository.getFilmPoster(title)
+        val d = repository.getFilmPoster(title)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -38,7 +38,7 @@ class FilmViewModel(private val repository: FilmRepository) : ViewModel() {
             })
     }
 
-    fun updateFilmPoster(film: Film, posterUrl: String){
+    fun updateFilmPoster(film: Film, posterUrl: String) {
         repository.updateFilm(film, posterUrl)
     }
 }
@@ -47,6 +47,6 @@ data class FilmEvent(
     val isLoading: Boolean = false,
     val isSuccess: Boolean = false,
     val error: Throwable? = null,
-    val posterUrl : String? = null,
+    val posterUrl: String? = null,
     val films: List<Film>? = null
 )

@@ -21,6 +21,9 @@ interface FilmDAO {
     fun findAll(): Flowable<List<Film>>
 
     @Query("SELECT * FROM film")
+    fun listAll(): List<Film>
+
+    @Query("SELECT * FROM film")
     fun findA(): List<Film>
 
     @Query("UPDATE film set poster_url = :posterUrl WHERE id = :id")

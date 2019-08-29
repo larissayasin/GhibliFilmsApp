@@ -8,16 +8,13 @@
         <action
                 android:id="@+id/action_filmsFragment_to_detailsFragment"
                 app:destination="@id/detailsFragment"
-                app:launchSingleTop="true"
+                app:launchSingleTop="false"
+                app:popUpTo="@+id/detailsFragment"
                 app:popUpToInclusive="false" />
     </fragment>
     <fragment android:id="@+id/detailsFragment" android:name="br.com.larissag.ghibiliapp.view.DetailsFragment"
               android:label="fragment_details" tools:layout="@layout/fragment_details">
         <argument android:name="details" app:argType="string"/>
-        <action
-                android:id="@+id/action_detailsFragment_to_filmsFragment"
-                app:destination="@id/filmsFragment"
-                app:launchSingleTop="false"
-                app:popUpToInclusive="false" />
+
     </fragment>
 </navigation>

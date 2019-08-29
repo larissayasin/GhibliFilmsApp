@@ -11,11 +11,12 @@ import br.com.larissag.ghibiliapp.R
 import br.com.larissag.ghibiliapp.viewmodel.FilmViewModel
 import kotlinx.android.synthetic.main.fragment_films.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class FilmsFragment : androidx.fragment.app.Fragment() {
 
-    private val vm: FilmViewModel by sharedViewModel()
+    private val vm: FilmViewModel by viewModel()
     private lateinit var vw: View
 
     override fun onCreateView(

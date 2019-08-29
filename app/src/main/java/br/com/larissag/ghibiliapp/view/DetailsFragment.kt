@@ -15,11 +15,12 @@ import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_details.view.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class DetailsFragment : androidx.fragment.app.Fragment() {
 
-    private val vm: FilmViewModel by sharedViewModel()
+    private val vm: FilmViewModel by viewModel()
     private lateinit var film: Film
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

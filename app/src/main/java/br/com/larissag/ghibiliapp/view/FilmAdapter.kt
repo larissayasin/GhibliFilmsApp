@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import br.com.larissag.ghibiliapp.R
 import br.com.larissag.ghibiliapp.data.Film
+import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.view_film_item.view.*
 
@@ -29,6 +30,7 @@ class FilmAdapter (private val films : List<Film>, private val activity : Activi
             iv.tv_film_item_title.text = film.title.trim()
             iv.tv_fil_item_director.text = film.director
             iv.tv_film_item_year.text = "(${film.release_date})"
+            Glide.with(iv).load(film.poster_url).placeholder(R.drawable.avatar_placeholder).into(iv.iv_film_item_poster)
             val nav = Navigation.findNavController(activity, R.id.main_frag_nav)
             iv.setOnClickListener {
                 val bundle = bundleOf("film" to Gson().toJson(film))
